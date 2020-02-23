@@ -1,0 +1,26 @@
+.ajoutdeliste {
+    font-weight: bold;
+}
+
+.newlist {
+    display: inline-flex;
+}
+.add-item-list__submit {
+    background: white;
+    margin: unset;
+}
+#sidebar {
+    position: fixed;
+    background-color: rgb(245, 246, 248);
+    font-weight: bold;
+    top: 0;
+    bottom: 0;
+    
+
+}
+.adresse {
+    font-size: large;
+}
+.menu {
+    list-style:none;
+}
