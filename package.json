@@ -1,0 +1,19 @@
+{
+  "name": "gitessai",
+  "version": "1.0.0",
+  "description": "projet Web DUT AS ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carole-stack/projetWeb2.git"
+  },
+  "author": "Halifa.Y, Signate.A, Rajasegar.P, Lecarpentier.C",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Carole-stack/projetWeb2/issues"
+  },
+  "homepage": "https://github.com/Carole-stack/projetWeb2#readme"
+}
