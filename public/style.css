@@ -1,26 +1,47 @@
-.ajoutdeliste {
-    font-weight: bold;
-}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
-.newlist {
-    display: inline-flex;
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
 }
-.add-item-list__submit {
-    background: white;
-    margin: unset;
-}
-#sidebar {
+.sidebar {
+    width: 280px;
+    height: 100%;
     position: fixed;
-    background-color: rgb(245, 246, 248);
-    font-weight: bold;
+    background-color: #F5F5F5;
     top: 0;
-    bottom: 0;
-    
-
+    left: 0;
+    padding-top: 20px;
+    display: block;
 }  
+.sidebar a {
+    font-weight: bold;
+    padding: 15px 6px;
+}
 .adresse {
     font-size: large;
+    
 }
-.menu {
-    list-style:none;
+
+.meslistes {
+    position: relative;
 }
+.meslistes:after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    background-color: gray;
+    width: 60%;
+    margin-left: 15px;
+    top: 50%;
+}
+
+.main {
+    margin-left: 280px;
+    font-size: 28px;
+    margin-top: 0;
+
+}
+
+
+
