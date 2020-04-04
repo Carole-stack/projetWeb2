@@ -1,26 +1,37 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
-body {
+* {
     margin: 0;
+    padding: 0;
     font-family: 'Open Sans', sans-serif;
 }
-.sidebar {
-    width: 280px;
+.wrapper{
+    display: flex;
+    position: relative;
+
+}
+.wrapper .sidebar {
+    width: 250px;
     height: 100%;
     position: fixed;
     background-color: #F5F5F5;
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-    display: block;
-}  
-.sidebar a {
-    font-weight: bold;
-    padding: 15px 6px;
-}
-.adresse {
-    font-size: large;
+    padding: 30px;
     
+
+} 
+.wrapper .sidebar ul li{
+    padding: 15px;
+    list-style-type: none;
+    text-decoration: none;
+} 
+.wrapper .sidebar ul li a {
+    font-weight: bold;
+    display: block;
+    
+}
+.a .adresse {
+    display: inline;
+    align-content: flex-end;
 }
 
 .meslistes {
@@ -35,13 +46,67 @@ body {
     margin-left: 15px;
     top: 50%;
 }
-
-.main {
-    margin-left: 280px;
+.liste {
+    font-weight: normal;
+}
+.wrapper .sidebar .footer{
+    margin-top: 230px;
+    display: block;
+}
+.wrapper .sidebar .footer ul li a{
+    
+    width: 40px;
+    height: 40px;
+}
+.a .parametres {
+    display: inline;
+}
+.a .deconnexion {
+    display: inline;
+}
+.wrapper .main_content {
+    width: 100%;
+    margin-left: 330px;
     font-size: 28px;
     margin-top: 0;
-
+    display: block;
 }
+.wrapper .main_content ul li{
+    padding: 15px;
+    font-size: medium;
+    display:inline;
+    list-style-type: disc;
+} 
+
+h2 {
+    padding-bottom: 25px;
+}
+hr {
+    color: silver;
+}
+h3{
+    padding-left: 17px;
+    font-weight: bold;
+    font-size: medium;
+}
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + span {
+    width: 25px;
+    height: 25px;
+    background-color: springgreen left top no-repeat;
+    cursor: pointer;
+}
+input[type="radio"]:checked + span {
+    background-color: springgreen -25px top no-repeat;
+}
+
+
+
+
+
 
 
 
