@@ -1,35 +1,11 @@
 -- INSERT Projects
-DROP TABLE IF EXISTS listes;
 
-CREATE TABLE listes (
-  id_liste SERIAL PRIMARY KEY,
-  id_users FOREIGN KEY,
-  name VARCHAR,
-  created_at timestamp default current_timestamp
-);
-
-INSERT INTO listes (name) VALUES ('projet web');
-INSERT INTO listes (name) VALUES ('projet System');
-
---INSERT Taches
 DROP TABLE IF EXISTS taches;
-
-CREATE TABLE taches (
-    id_tache SERIAL PRIMARY KEY,
-    id_liste FOREIGN KEY,
-    titre VARCHAR,
-    date_tache, VARCHAR,
-    note VARCHAR,
-    created_at timestamp default current_timestamp
-);
-INSERT INTO taches (id_tache, id_liste, titre, date_tache, note) VALUES ('Enregistrer le repository', '12/05/20', 'urgent');
-
--- INSERT Usersi
+DROP TABLE IF EXISTS listes;
 DROP TABLE IF EXISTS users;
 
-
-CREATE TABLE users (
-  ID SERIAL PRIMARY KEY,
+CREATE TABLE USERS (
+  Id_user SERIAL PRIMARY KEY,
   username VARCHAR(20),
   firstname VARCHAR,
   lastname VARCHAR,
@@ -37,5 +13,35 @@ CREATE TABLE users (
   created_at timestamp default current_timestamp
 );
 
-INSERT INTO users (username, firstname, lastname, unsecured_password) VALUES ('seafoox', 'Alexandre', 'Collin', '123456');
-INSERT INTO users (username, firstname, lastname, unsecured_password) VALUES ('toto', 'Thomas', 'Dupont', '123456');
+INSERT INTO USERS (username, firstname, lastname, unsecured_password) VALUES ('seafoox', 'Alexandre', 'Collin', '123456');
+INSERT INTO USERS (username, firstname, lastname, unsecured_password) VALUES ('toto', 'Thomas', 'Dupont', '098765');
+
+CREATE TABLE listes (
+  id_liste SERIAL PRIMARY KEY,
+  Id_user INTEGER,
+  name VARCHAR,
+  created_at timestamp default current_timestamp
+);
+ALTER TABLE listes ADD CONSTRAINT FK_Id_users FOREIGN KEY (Id_user)
+REFERENCES users(Id_user);
+
+INSERT INTO listes (Id_user, name) VALUES (1, 'projet web');
+INSERT INTO listes (Id_user, name) VALUES (1, 'projet System');
+
+
+
+CREATE TABLE taches (
+    id_tache SERIAL PRIMARY KEY,
+    id_liste INTEGER,
+    titre VARCHAR,
+    date_tache VARCHAR,
+    note VARCHAR,
+    created_at timestamp default current_timestamp
+);
+
+ALTER TABLE taches ADD CONSTRAINT FK_id_liste FOREIGN KEY (id_Liste)
+REFERENCES listes(id_liste);
+
+INSERT INTO taches (id_liste, titre, date_tache, note) VALUES (1, 'enregistrer sur git', '12/05/20', 'blablabla');
+
+
