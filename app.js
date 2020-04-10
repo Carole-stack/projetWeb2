@@ -11,6 +11,8 @@ document.getElementById("newlist").addEventListener("click", function() {
   document.getElementById("meslistes").appendChild(listElt);
   
 });
+
+/*
 // quand on clique sur une liste dans la sidebar de gauche,
 // on fait apparaitre la page edition de lise
 var liste = document.getElementById("titreListe");
@@ -41,14 +43,27 @@ liste.addEventListener("click", function() {
   let tacheElt = document.createElement("div");
   tacheElt.className = 'tache';
   var aCroix = document.createElement('a');
-  var svgCroix = document.createElement
+  var svgCroix = document.createElement('svg');
+  svgCroix.width="24";
+  svgCroix.height="24";
+  svgCroix.fill="none";
+  svgCroix.xmlns="http://www.w3.org/2000/svg";
+  var pathCroix= document.createElement('path');
+  pathCroix.d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z";
+  pathCroix.fill="#000";
+  aCroix.appendChild(svgCroix);
+  aCroix.appendChild(pathCroix);
+  tacheElt.appendChild(aCroix);
+  var pAjoutTache = document.createElement('p');
+  pAjoutTache.textContent = "Ajouter une tâche...";
+  var aPoubelle = document.createElement('a');
+  var svgPoubelle = document.createElement('svg');
 
-
-
+  /// je n'ai pas fini celle-ci 
   
-});
+});    */
 
-
+/*
 // fonction qui permet de creer un element tache dans le dom
 // mais ça c'est à partir du formulaire
 function createTacheElement(tache) {
@@ -90,4 +105,4 @@ function createTacheElement(tache) {
   echeance.textContent = post.
 
 
-}
+}    */
