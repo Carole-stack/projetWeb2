@@ -6,15 +6,13 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE USERS (
   Id_user SERIAL PRIMARY KEY,
-  username VARCHAR(20),
-  firstname VARCHAR,
-  lastname VARCHAR,
+  usermail VARCHAR(25),
   unsecured_password VARCHAR(20),
   created_at timestamp default current_timestamp
 );
 
-INSERT INTO USERS (username, firstname, lastname, unsecured_password) VALUES ('seafoox', 'Alexandre', 'Collin', '123456');
-INSERT INTO USERS (username, firstname, lastname, unsecured_password) VALUES ('toto', 'Thomas', 'Dupont', '098765');
+INSERT INTO USERS (usermail, unsecured_password) VALUES ('henriette3@me.com', '123456');
+
 
 CREATE TABLE listes (
   id_liste SERIAL PRIMARY KEY,

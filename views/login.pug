@@ -2,3 +2,19 @@ extends layout
 
 block dynamicContent
   h2 Login
+    if info
+    p= info
+
+  form(method="post" action="/login/send")
+    p
+      label Adresse mail
+      input(type="text" name="username")
+    p
+      label Mot de passe
+      input(type="password" name="password")
+    p
+      input(type="submit" value="Envoyer")
+    p
+      a(href="/login/motoublié") J'ai oubleé mon mot de passe
+    p
+      a(href="/signup") Pas encore de compte ? Inscrivez-vous!

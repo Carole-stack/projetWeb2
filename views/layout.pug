@@ -1,15 +1,8 @@
 html
     head
     title= title
-    llink(rel="stylesheet" href="/style.css")
+    link(rel="stylesheet" href="/style.css")
 body
-    h1 Mon site - #{title}
-        br
-        a(href="/liste") Liste 
-        br
-        a(href="/login")  Connexion
-        br
-        a(href="/signup") Deconnexion
-
+    
     .content
     block dynamicContent
