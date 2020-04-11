@@ -1,23 +1,26 @@
 extends layout
 
 block dynamicContent
-     h1 Acceuil
+    h1 Les listes 
+    if isAuthentificated
         span #{usermail} 
-        ul
-            for liste in listesList
-                li
-                    a(href="/liste/{id}") #{liste.name}
+    else
+        span Pas connecté
+    ul
+        for liste in listesList
+            li
+                a(href="/liste/{id}") #{liste.name}
 
-        form(method="post", action="liste/create")
-            p
-                label Ajouter une liste
-                input(type="text", name="listName")
-            p
-                input(type="submit", value="enregistrer")
+    form(method="post", action="liste/create")
+        p
+            label Ajouter une liste
+            input(type="text", name="listName")
+        p
+            input(type="submit", value="enregistrer")
 
         
 
-        a(href="/login")  Connexion
+        a(href="/settings")  Paramètres
         br
         a(href="/signup") Deconnexion
     

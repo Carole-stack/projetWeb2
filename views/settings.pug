@@ -1,0 +1,21 @@
+extends layout
+
+block dynamicContent
+  h2 Paramètres
+    h3 Adresse e-mail
+        p Adresse e-mail actuelle : #{usermail}
+        
+        form(methode="post" action= "/login/updateMail")
+            p
+                label Nouvelle adressse-mail
+            p
+                input(type="text" name="newusermail")
+            p
+                label Confirmer l'adresse-mail
+            p
+                input(type="text" name="mailrepeat")
+            p
+                input(type="submit" value="Modifier")
+
+                
+            

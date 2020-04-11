@@ -6,6 +6,7 @@ const indexRoutes = require("./routes/index");
 const listeRoutes = require("./routes/liste");
 const signupRoutes = require("./routes/signup");
 const loginRoutes = require("./routes/login");
+const settingsRoutes = require("./routes/settings");
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(session(sessionParams));
 app.use((req, res, next) => {
   // Si l'ulisateur est authentifié
   if (req.session && req.session.userId) {
-    res.locals.usermail = req.session.usermail;
+    res.locals.usermail = req.session.userEmail;
     res.locals.isAuthentificated = true;
   }
   
@@ -37,6 +38,7 @@ app.use("/index", indexRoutes);
 app.use("/liste", listeRoutes);
 app.use("/signup", signupRoutes);
 app.use("/login", loginRoutes);
+app.use("/settings", settingsRoutes);
 
 app.listen("3000", () => {
   console.log("Server started");

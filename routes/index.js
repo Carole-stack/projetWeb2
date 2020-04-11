@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.get("/", (req, res) => {
-    utils.executeQuery("SELECT * FROM listes",[], (err, result) => {
+    utils.executeQuery("SELECT * FROM listes WHERE id_user =$1 ",[req.session.userId], (err, result) => {
         if (err) {
             res.status(500).send(err);
           } else {

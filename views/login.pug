@@ -2,8 +2,7 @@ extends layout
 
 block dynamicContent
   h2 Login
-    if info
-    p= info
+  
 
   form(method="post" action="/login/send")
     p
@@ -15,6 +14,6 @@ block dynamicContent
     p
       input(type="submit" value="Connexion")
     p
-      a(href="/login/motoublié") J'ai oubleé mon mot de passe
+      a(href="/login/motoublié") J'ai oublié mon mot de passe
     p
       a(href="/signup") Pas encore de compte ? Inscrivez-vous!

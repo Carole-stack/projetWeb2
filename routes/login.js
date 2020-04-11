@@ -9,11 +9,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// se deconnecter
-router.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
-});
 // authentication de l'utilisateur
 router.post('/send', (req, res) => {
   const form = req.body;
@@ -31,9 +26,11 @@ router.post('/send', (req, res) => {
 
       // Si userFound !== null, on le sauvegarde dans la session à l'aide d'un cookie
       if (userFound) {
-        req.session.userId = userFound.id;
-        req.session.usermail = userFound.usermail;
+        req.session.userId = userFound.id_user;
+        req.session.userEmail = userFound.usermail;
+        res.locals.isAuthentificated = true;
         res.locals.usermail = userFound.usermail;
+       
         res.redirect("/index");
       }
       else {
@@ -41,6 +38,12 @@ router.post('/send', (req, res) => {
       }
     }
   });  
+});
+
+// se déonnecter
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 });
 
 module.exports = router;
