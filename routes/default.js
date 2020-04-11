@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('index', {
-    content: accueilText,
-    title: 'Accueil'
+  res.render('login', {
+    title: 'connexion'
   });
 });
 
+module.exports = router;

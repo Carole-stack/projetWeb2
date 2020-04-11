@@ -1,15 +1,16 @@
-const express = require('express');
-const session = require('express-session');
+const express = require("express");
+const session = require("express-session");
 const helpers = require("./routes/helpers");
-const defaultRoutes = require('./routes/default');
-const listeRoutes = require('./routes/liste');
-const signupRoutes = require('./routes/signup');
-const loginRoutes = require('./routes/login');
+const defaultRoutes = require("./routes/default");
+const indexRoutes = require("./routes/index");
+const listeRoutes = require("./routes/liste");
+const signupRoutes = require("./routes/signup");
+const loginRoutes = require("./routes/login");
 
 const app = express();
 
 const sessionParams = {
-  secret: 'my_secret',
+  secret: "my_secret",
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 };
 app.use(session(sessionParams));
@@ -25,19 +26,18 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 // Ajout declaration moteur de template
-app.set('view engine', 'pug');
+app.set("view engine", "pug");
 
+app.use("/", defaultRoutes);
+app.use("/index", indexRoutes);
+app.use("/liste", listeRoutes);
+app.use("/signup", signupRoutes);
+app.use("/login", loginRoutes);
 
-app.use('/', defaultRoutes);
-app.use('/helpers', helpers);
-app.use('/liste', listeRoutes);
-app.use('/signup', signupRoutes);
-app.use('/login', loginRoutes);
-
-app.listen(3000, () => {
-  console.log('Server started');
+app.listen("3000", () => {
+  console.log("Server started");
 });

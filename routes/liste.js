@@ -1,6 +1,9 @@
 const express = require('express');
 const utils = require("../db/utils");
+const helpers = require("./helpers");
+
 const router = express.Router();
+
 //route qui permet de faire apparaitre le formulaire pour creer la liste
 router.get("/add", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
   res.render("list_add", {

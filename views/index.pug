@@ -1,12 +1,20 @@
 extends layout
 
 block dynamicContent
-     h1 
-    if isAuthentificated
-        span #{usermail}
+     h1 Acceuil
+        span #{usermail} 
         ul
-            li
-                a(href="/liste/add") #{listName}
+            for liste in listesList
+                li
+                    a(href="/liste/{id}") #{liste.name}
+
+        form(method="post", action="liste/create")
+            p
+                label Ajouter une liste
+                input(type="text", name="listName")
+            p
+                input(type="submit", value="enregistrer")
+
         
 
         a(href="/login")  Connexion
