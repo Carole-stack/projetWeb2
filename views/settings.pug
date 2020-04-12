@@ -1,21 +1,29 @@
 extends layout
 
 block dynamicContent
-  h2 Paramètres
+
+    .main_contain
+    h2 Paramètres
     h3 Adresse e-mail
-        p Adresse e-mail actuelle : #{usermail}
-        
-        form(methode="post" action= "/login/updateMail")
-            p
-                label Nouvelle adressse-mail
-            p
-                input(type="text" name="newusermail")
-            p
-                label Confirmer l'adresse-mail
-            p
-                input(type="text" name="mailrepeat")
-            p
-                input(type="submit" value="Modifier")
+    p.smallTxt Adresse e-mail actuelle : #{usermail}
+    p Nouvelle adresse mail  
+    form(methode="post" action= "/login/updateMail")
+     input(type="text" name="email" placeholder="mail@provider.com" size="30" required="")
+     p  Confirmer l'adresse e-mail 
+     input(type="text" name="email2" placeholder="mail@provider.com" size="30" required="")
+     br
+     input.button(type="submit" size="30" value="Modifier l'adresse e-mail")
+    h3  Mot de passe 
+    p  Mot de passe actuel 
+    form(method="post" action="/settings/updatePassword")
+     input(type="password" name="password" placeholder="password" size="30" required="")
+     p  Nouveau mot de passe 
+     input(type="password" name="password" placeholder="password" size="30" required="")
+     p  Confirmer le nouveau mot de passe 
+     input(type="password" name="password" placeholder="password" size="30" required="")
+     br
+     input.button(type="submit" size="30" value="Modifier le mot de passe")
+            
 
                 
             

@@ -5,6 +5,8 @@ const helpers = require("./helpers");
 const router = express.Router();
 
 //route qui permet d'arriver sur la page d'édition de liste
+// on a besoin de table liste pour afficher le nom de la liste
+//et de la table taches pour afficher toutes les taches de cette liste
 router.get("/", (req, res) => {
   utils.executeQuery("SELECT * FROM listes WHERE id_liste=$1", [req.params.id], (err, result) => {
     if (err) {
@@ -12,8 +14,8 @@ router.get("/", (req, res) => {
     } else {
       const details = result.rows[0];
       res.render('liste', {
-          title:  "Edition de liste",
-          // code de Aissatou
+          title: "Edition de liste",
+          /// Aissatou ici peut etre est ce necessaire de completer la requete select avec la table taches
         });
       }
   });
@@ -39,7 +41,8 @@ router.get("/add", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
     });
   });
  
-  // Afficher la page d'une liste
+  // Afficher la page d'une liste  on abesoin de la table liste pour afficher le nom de la liste
+  // et de la table taches pour afficher toutes les taches cette liste
 router.get("/:id([0-9]+)", (req, res) => {
   utils.executeQuery("SELECT * FROM listes WHERE id_liste=$1", [req.params.id], (err, result) => {
       if (err) {
@@ -58,7 +61,7 @@ router.get("/:id([0-9]+)", (req, res) => {
 // Suppression d'une liste
 router.get("/:id([0-9]+)/delete", (req, res) => {
   const listeId = req.params.id;
-  const sql = "DELETE FROM projects WHERE id=$1";
+  const sql = "DELETE FROM listes WHERE id=$1";
   utils.executeQuery(sql, [listeId], (err, result) => {
     if (err) {
       res.status(500).send(err);
