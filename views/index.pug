@@ -1,28 +1,26 @@
 extends layout
 
 block dynamicContent
-    h1 Les listes 
-    if isAuthentificated
-        span #{usermail} 
-    else
-        span Pas connecté
-    ul
-        for liste in listesList
-            li
-                a(href="/liste/{id}") #{liste.name}
+    .wrapper
+        .sidebar
+            if isAuthentificated
+                span #{usermail} 
+            else
+                span Pas connecté
+            ul
+                for liste in listesList
+                    li
+                        a(href="/liste") #{liste.name}  
+            a(href="/liste/add") Ajouter une liste
+            .footer
+                li
+                    a(href="/settings")  Paramètres
+                li
+                    a(href="/signup") Deconnexion
+        .main_content
+            h2 Prochaînes taches
+            ul 
+                for tache in tacheList
 
-    form(method="post", action="liste/create")
-        p
-            label Ajouter une liste
-            input(type="text", name="listName")
-        p
-            input(type="submit", value="enregistrer")
-
-        
-
-        a(href="/settings")  Paramètres
-        br
-        a(href="/signup") Deconnexion
-    
 
         

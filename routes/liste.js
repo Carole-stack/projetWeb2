@@ -4,6 +4,21 @@ const helpers = require("./helpers");
 
 const router = express.Router();
 
+//route qui permet d'arriver sur la page d'édition de liste
+router.get("/", (req, res) => {
+  utils.executeQuery("SELECT * FROM listes WHERE id_liste=$1", [req.params.id], (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      const details = result.rows[0];
+      res.render('liste', {
+          title:  "Edition de liste",
+          // code de Aissatou
+        });
+      }
+  });
+});
+
 //route qui permet de faire apparaitre le formulaire pour creer la liste
 router.get("/add", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
   res.render("list_add", {
@@ -19,7 +34,6 @@ router.get("/add", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.local.liste.name = form.name;
         res.redirect("/liste");
       }
     });
@@ -27,29 +41,30 @@ router.get("/add", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
  
   // Afficher la page d'une liste
 router.get("/:id([0-9]+)", (req, res) => {
-  utils.executeQuery("SELECT * FROM listes WHERE id=$1", [req.params.id], (err, result) => {
+  utils.executeQuery("SELECT * FROM listes WHERE id_liste=$1", [req.params.id], (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else {
         const listeDetails = result.rows[0];
-        res.render("index", {
-          listeDetails
+        res.render("/liste", {
+          titreDeListe: listeDetails.name
         });
       }
     }
   );
 });
 
-router.get("/:id([0-9]+)", (req, res) => {
-  utils.executeQuery("SELECT * FROM listes where id_liste = $1", [req.params.id], (err, result) => {
+
+// Suppression d'une liste
+router.get("/:id([0-9]+)/delete", (req, res) => {
+  const listeId = req.params.id;
+  const sql = "DELETE FROM projects WHERE id=$1";
+  utils.executeQuery(sql, [listeId], (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
-        const listeDetails = result.rows[0];
-        res.render('liste/{id}', {
-          title: "Liste",
-          titreDeListe: listeDetails.name
-        });
+      req.session.infoMessage = `Le projet #${projectId} a été supprimé.`
+      res.redirect("/projects");
     }
   });
 });
