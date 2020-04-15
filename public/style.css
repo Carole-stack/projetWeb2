@@ -1,26 +1,140 @@
-.ajoutdeliste {
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+  p {
     font-weight: bold;
+    font-size: medium;
+    font-size: 13px;
+  }
+  .smallTxt {
+    font-size: 10px;
+  }
+  .wrapper{
+    display: flex;
+    position: relative;
 }
-
-.newlist {
-    display: inline-flex;
-}
-.add-item-list__submit {
-    background: white;
-    margin: unset;
-}
-#sidebar {
+.wrapper .sidebar {
+    width: 270px;
+    height: 100%;
     position: fixed;
-    background-color: rgb(245, 246, 248);
+    background-color: #F5F5F5;
+    padding: 10px;
+    font-size: 15px;
+} 
+.wrapper .sidebar ul li{
+    padding: 15px;
+    list-style-type: none;
+    text-decoration: none;
+} 
+.wrapper .sidebar ul li a {
     font-weight: bold;
-    top: 0;
-    bottom: 0;
+    display: block;
     
-
+}
+h2 {
+    padding-bottom: 25px;
+    font-style: Bold;
+} 
+.a .adresse {
+    display: inline;
+    align-content: flex-end;
 }  
-.adresse {
-    font-size: large;
+.meslistes {
+    position: relative;
 }
-.menu {
-    list-style:none;
+.meslistes:after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    background-color: lightgrey;
+    width: 70%;
+    margin-left: 15px;
+    top: 50%;
 }
+.liste {
+    font-weight: lighter;
+}
+.sidebar .svg {
+    margin-right: 15px;
+}
+.wrapper .main_content {
+    width: 100%;
+    margin-left: 330px;
+    font-size: 22px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.wrapper .main_content ul li{
+    font-size: medium;
+    display: inline;
+    padding-right: 10px;
+}
+.wrapper .sidebar .footer{
+    margin-top: 220px;
+    display: block;
+}
+.wrapper .sidebar .footer ul li a {
+    width: 40px;
+    height: 40px;
+}
+.footer {
+    align-content: flex-end;
+    margin-top: 550px;
+}
+.a .parametres {
+    display: inline;
+}
+.a .deconnexion {
+    display: inline;
+}
+.wrapper .main_content {
+    width: 100%;
+    margin-left: 330px;
+    font-size: 22px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.wrapper .main_content ul li{
+    font-size: medium;
+    display: inline;
+    padding-right: 10px;
+}
+
+.tache {
+    border-top-color: lightgray;
+    border-top-style: solid;
+    display: flex;
+    flex-direction: row;
+    
+}
+.tache_content {
+    display: block;
+}
+.check {
+    height: 60px;
+    width: 60px;
+}
+.button {
+    color: white;
+    background-color: #FF7675;
+    border-radius: 4px;
+    border: 0px;
+  }
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+extends layout
+
+block dynamicContent
+  h2 Ajouter un titre de liste
+    
+  form(method="post" action="/liste/create")
+    p
+      
+      input(type="text" name="name")
+    p
+      input(type="submit" value="Ajouter")

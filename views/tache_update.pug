@@ -1,0 +1,34 @@
+extends index
+
+block listContent
+   h2 Titre de la liste
+
+  .col-lg-offset-10.col-lg-3 .tache-formulaire <!-- va être dans le pug "tache_add"-->
+            form(method="post" action="tasks/update")
+                .tache-formulaire
+                    .tache-titre
+                        p Formulaire d'ajout d'une tache 
+                        // à supprimer
+                        label  Titre 
+                        input.ajout-titre-form-input(type='text' placeholder='Saisissez un titre' value=defaultTitle)
+                    .tache-etapes
+                        label Etapes
+                        // créer un bouton à chq fois qu'on clique sur le plus
+                        input.ajout-tache-form-input(type='text' placeholder='Nouvelle étape')
+                        button.ajout-etape-tache-input(type='submit')
+                            svg(width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg')
+                                path(d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z' fill='#000')
+                    .tache-echeance
+                        label  Echéance
+                        input.ajout-tache-form-input(type='datetime' placeholder='JJ/MM/YYYY' value =defaultDeadline)
+                    // rajouter le symbol calendrier
+                    .tache-note
+                        label  Notes 
+                        input.tache-note(type='datetime' placeholder='Quelques détails à propos de cette tâche..' value=defaultNote)
+                    .boutons-tache-button
+                        button.enregistrer-tache
+                            p Enregistrer
+                        button.annuler-tache
+                            p Annuler
+
+                        

@@ -2,9 +2,11 @@
   "name": "gitessai",
   "version": "1.0.0",
   "description": "projet Web DUT AS ",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon app",
+    "importdb": "node db/imports.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,16 @@
   "bugs": {
     "url": "https://github.com/Carole-stack/projetWeb2/issues"
   },
-  "homepage": "https://github.com/Carole-stack/projetWeb2#readme"
+  "homepage": "https://github.com/Carole-stack/projetWeb2#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "pg": "^8.0.2",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
 }
