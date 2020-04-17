@@ -1,23 +1,23 @@
 const express = require('express');
-const utils = require("../db/utils");
+const tasks_services = require("../services/tasks_services");
+const list_services = require("../services/list_services");
 const helpers = require("./helpers");
 
 const router = express.Router();
 
 //route qui permet d'arriver sur la page d'édition de liste
-// on a besoin de table liste pour afficher le nom de la liste
-//et de la table taches pour afficher toutes les taches de cette liste
-router.get("/", (req, res) => {
-  utils.executeQuery("SELECT * FROM listes WHERE id_liste=$1", [req.params.id], (err, result) => {
+
+router.get("/:id([0-9]+)", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
+  tasks_services.getAllListe(req.params.id, (err, tacheList) => {
     if (err) {
       res.status(500).send(err);
-    } else {
-      const details = result.rows[0];
+      return;
+    } 
       res.render('liste', {
           title: "Edition de liste",
-          /// Aissatou ici peut etre est ce necessaire de completer la requete select avec la table taches
+          tacheList: tacheList
         });
-      }
+      
   });
 });
 
@@ -28,11 +28,11 @@ router.get("/add", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
   });
 });
 
-// route qui permet de mettre a jour la base de donnée
-  router.post("/create", (req, res) => {
+// route qui permet de mettre a jour la base de donnée en créant une liste
+  router.post("/create",helpers.limitAccessToAuthentificatedOnly, (req, res) => {
     const form = req.body;
-    const sql = "INSERT INTO listes (id_user, name) VALUES ($1, $2)";
-    utils.executeQuery(sql, [req.session.userId, form.name], (err, res) => {
+    
+    list_services.save(req.session.userId, form.name, (err, res) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -44,31 +44,33 @@ router.get("/add", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
   // Afficher la page d'une liste  on abesoin de la table liste pour afficher le nom de la liste
   // et de la table taches pour afficher toutes les taches cette liste
 router.get("/:id([0-9]+)", (req, res) => {
-  utils.executeQuery("SELECT * FROM listes WHERE id_liste=$1", [req.params.id], (err, result) => {
+  tasks_services.getAllIndex(req.params.id, (err, tacheList) => {
       if (err) {
         res.status(500).send(err);
-      } else {
-        const listeDetails = result.rows[0];
+        return;
+      } 
         res.render("/liste", {
-          titreDeListe: listeDetails.name
+          nomDeListe: tacheList.name,
+          tacheTitre: tacheList.titre,
+          tachedDate_tache: tacheList.date,
+          tacheNote: tacheList.note    
         });
-      }
     }
   );
 });
 
 
 // Suppression d'une liste
-router.get("/:id([0-9]+)/delete", (req, res) => {
+router.get("/:id([0-9]+)/delete", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
   const listeId = req.params.id;
-  const sql = "DELETE FROM listes WHERE id=$1";
-  utils.executeQuery(sql, [listeId], (err, result) => {
+  list_services.deleteById(sql, listeId, (err, result) => {
     if (err) {
       res.status(500).send(err);
-    } else {
-      req.session.infoMessage = `Le projet #${projectId} a été supprimé.`
-      res.redirect("/projects");
-    }
+      return;
+    } 
+      req.session.infoMessage = `La Liste #${listeId} a été supprimée.`
+      res.redirect("/listes");
+    
   });
 });
   module.exports = router;

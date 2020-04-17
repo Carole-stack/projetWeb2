@@ -38,7 +38,7 @@ router.get("/", (req, res) => {
             });
   });   */
 
-// fonction d'affichage d'acceuil basique
+// fonction d'affichage d'accueil basique
   router.get("/", (req, res) => {
     utils.executeQuery("SELECT * FROM listes WHERE id_user =$1 ",[req.session.userId], (err, result) => {
         if (err) {
@@ -50,6 +50,6 @@ router.get("/", (req, res) => {
                   listesList: listesList
               });
             }   
-        });
+        });  ///// MODIFIER CELLE LA POUR INDEX
   });
   module.exports = router;

@@ -123,6 +123,12 @@ h2 {
     height: 60px;
     width: 60px;
 }
+.tache .svg {
+    border: lightgray 1px;
+    border-style: solid;
+    border-radius: 50%;
+    background-color: #F5F5F5;
+}
 .button {
     color: white;
     background-color: #FF7675;
