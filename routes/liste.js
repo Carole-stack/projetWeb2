@@ -5,8 +5,8 @@ const helpers = require("./helpers");
 
 const router = express.Router();
 
-//route qui permet d'arriver sur la page d'édition de liste
 
+//route qui permet d'arriver sur la page d'édition de liste
 router.get("/:id([0-9]+)", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
   tasks_services.getAllListe(req.params.id, (err, tacheList) => {
     if (err) {
@@ -15,7 +15,10 @@ router.get("/:id([0-9]+)", helpers.limitAccessToAuthentificatedOnly, (req, res) 
     } 
       res.render('liste', {
           title: "Edition de liste",
-          tacheList: tacheList
+          nomDeListe: tacheList.name,
+          tacheTitre: tacheList.titre,
+          tacheDate: tacheList.date,
+          tacheNote: tacheList.note
         });
       
   });
@@ -41,23 +44,7 @@ router.get("/add", helpers.limitAccessToAuthentificatedOnly, (req, res) => {
     });
   });
  
-  // Afficher la page d'une liste  on abesoin de la table liste pour afficher le nom de la liste
-  // et de la table taches pour afficher toutes les taches cette liste
-router.get("/:id([0-9]+)", (req, res) => {
-  tasks_services.getAllIndex(req.params.id, (err, tacheList) => {
-      if (err) {
-        res.status(500).send(err);
-        return;
-      } 
-        res.render("/liste", {
-          nomDeListe: tacheList.name,
-          tacheTitre: tacheList.titre,
-          tachedDate_tache: tacheList.date,
-          tacheNote: tacheList.note    
-        });
-    }
-  );
-});
+
 
 
 // Suppression d'une liste
@@ -73,4 +60,5 @@ router.get("/:id([0-9]+)/delete", helpers.limitAccessToAuthentificatedOnly, (req
     
   });
 });
+
   module.exports = router;

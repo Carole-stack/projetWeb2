@@ -12,10 +12,11 @@ module.exports = {
 };
 
 // retourner la liste des tâches pour un user pour la page accueil
-function getAllIndex(sqlQuery, callback){
-    
+function getAllIndex(Id_user, callback){
+  
+
     let sqlQuery = "SELECT taches.titre, taches.date_tache, taches.note FROM taches, users, listes WHERE taches.date_tache is NOT NULL AND users.Id_user=$1 AND listes.Id_user=$1 AND listes.id_listes = taches.id_liste ORDER BY taches.date_taches LIMIT 100";
-    utils.executeQuery(sqlQuery, [req.session.userId], (err, result) => {
+    utils.executeQuery(sqlQuery, [Id_user], (err, result) => {
       if (err) {
         callback(true, err);
       } else {
@@ -24,16 +25,17 @@ function getAllIndex(sqlQuery, callback){
     });
 }
 
-// retourner la liste des tâches pour une liste page d'édition de liste
-function getAllListe(sqlQuery, callback){
+// retourner la liste des tâches pour une liste dans page d'édition de liste
+function getAllListe(liste_id, callback){
     
-  let sqlQuery = "SELECT taches.titre, taches.date_tache, taches.note FROM taches, listes WHERE listes.id_liste=$1  AND listes.id_listes = taches.id_liste ORDER BY taches.id_tachesLIMIT 100";
-  utils.executeQuery(sqlQuery, [req.params.id], (err, result) => {
+  let sql = "SELECT taches.titre, taches.date_tache, taches.note FROM taches, listes WHERE listes.id_liste=$1  AND listes.id_listes = taches.id_liste ORDER BY taches.id_tachesLIMIT 100";
+  utils.executeQuery(sql, [liste_id], (err, result) => {
     if (err) {
       callback(true, err);
     } else {
-      callback(undefined, result.rows);
+      callback(undefined, result.rows[0]);
     }
+    
   });
 }
 
@@ -42,7 +44,7 @@ function getAllListe(sqlQuery, callback){
 // retourner le détail d'une tâche 
 
 function getById(tacheId, callback) {
-  utils.executeQuery("SELECT * FROM taches WHERE id=$1", [tacheId], (err, result) => {
+  utils.executeQuery("SELECT * FROM taches WHERE id_tache=$1 AND ", [tacheId], (err, result) => {
     if (err) {
       callback(true, err);
     }
@@ -58,9 +60,9 @@ function getById(tacheId, callback) {
 
 //sauvegarder une tache 
 
-function save({titre, date_tache, note}, callback) {
-  const sql = "INSERT INTO tache (titre, date, note) VALUES ($1, $2, $3) RETURNING *";
-  utils.executeQuery(sql, [titre, date_tache, note], (err, result) => {
+function save({id_liste, titre, date_tache, note}, callback) {
+  const sql = "INSERT INTO tache (id_liste, titre, date, note) VALUES ($1, $2, $3, $4) RETURNING *";
+  utils.executeQuery(sql, [id_liste, titre, date_tache, note], (err, result) => {
     if (err) {
       callback(true, err);
     } else {

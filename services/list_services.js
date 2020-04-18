@@ -4,7 +4,7 @@ module.exports = {
     save,
     deleteById
   };
-
+// fonction qui permet de supprimer la liste depuis la page edition de liste/tache
   function deleteById(id_liste, callback) {
     const query = "DELETE FROM listes WHERE id=$1";
     utils.executeQuery(query, [id_liste], (err, result) => {

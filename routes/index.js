@@ -3,7 +3,7 @@ const utils = require("../db/utils");
 
 const router = express.Router();
 /*
-//fonction qui ne fonctionne pas encore
+
 router.get("/", (req, res) => {
     utils.executeQuery("SELECT taches.titre, taches.date_tache, taches.note FROM USERS, listes, taches WHERE Id_user =$1 AND taches.date_tache IS NOT NULL AND USERS.Id_user = listes.Id_user AND listes.id_liste = taches.id_liste",
     [req.session.userId], (err, result) => {
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
               const tachesDetails = result.rows.length && result.rows[0];
               if(tachesDetails) {
                 res.render("index", {
-                    title: "Acceuil",
+                    title: "Accueil",
                     defaultTitre: tachesDetails.titre,
                     defaultDate_tache: tachesDetails.date,
                     defaultNote: tachesDetails.note
@@ -44,6 +44,7 @@ router.get("/", (req, res) => {
         if (err) {
             res.status(500).send(err);
           } else {
+            console.log(result.rows);
               const listesList = result.rows;
               res.render("index", {
                   titre: "Accueil",
@@ -52,4 +53,26 @@ router.get("/", (req, res) => {
             }   
         });  ///// MODIFIER CELLE LA POUR INDEX
   });
+
+
+
+
+
+  /*   // Afficher la page d'une liste  on abesoin de la table liste pour afficher le nom de la liste
+  // et de la table taches pour afficher toutes les taches cette liste
+router.get("/:id([0-9]+)", (req, res) => {
+  tasks_services.getAllIndex(req.params.id, (err, tacheList) => {
+      if (err) {
+        res.status(500).send(err);
+        return;
+      } 
+        res.render("/liste", {
+          nomDeListe: tacheList.name,
+          tacheTitre: tacheList.titre,
+          tachedDate: tacheList.date,
+          tacheNote: tacheList.note    
+        });
+    }
+  );
+});   */
   module.exports = router;
