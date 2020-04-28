@@ -6,7 +6,7 @@ const taskRoutes = require("./routes/tasks");
 const stepsRoutes = require("./routes/steps");
 // const signupRoutes = require("./routes/signup");
 // const loginRoutes = require("./routes/login");
-//const settingsRoutes = require("./routes/settings");
+const settingsController = require('./controllers/settings');
 const bodyParser = require('body-parser')
 
 let cors = require('cors')
@@ -56,7 +56,7 @@ app.use("/tasks", taskRoutes);
 app.use("/steps", stepsRoutes);
 // app.use("/signup", signupRoutes);
 // app.use("/login", loginRoutes);
-//app.use("/settings", settingsRoutes);
+app.use("/settings", settingsController);
 
 
 // app.listen("3000", () => {
