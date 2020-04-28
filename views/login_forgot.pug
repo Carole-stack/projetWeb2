@@ -1,0 +1,11 @@
+extends layout
+
+block dynamicContent
+  h2 Vous avez oublié votre mot de passe
+    
+  form(method="post" action="/liste/create")
+    p
+      
+      input(type="text" name="mail")
+    p
+      input(type="submit" value="OK")

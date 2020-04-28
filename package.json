@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon app",
-    "importdb": "node db/imports.js"
+    "importdb": "node db/import.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,13 @@
   },
   "homepage": "https://github.com/Carole-stack/projetWeb2#readme",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.4.6",
     "pg": "^8.0.0",
     "pug": "^2.0.4"
   },

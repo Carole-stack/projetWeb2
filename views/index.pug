@@ -15,7 +15,7 @@ block dynamicContent
             ul
                 for liste in listesList
                     li
-                        a(href="/liste/"+ liste.id_liste) #{liste.name}  
+                        a(href="/liste"+ liste.id_liste) #{liste.name}  
             a(href="/liste/add") 
                 svg.svg(width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg")
                     path(d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#FF7675")
@@ -34,21 +34,22 @@ block dynamicContent
         .main_content
             h2  Prochaines tâches
             .tache
-                for tache in tacheList
-                    .check
-                        a.svg
-                            svg(width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg")
-                                path(d="M5.25 9.433L2.817 7l-.828.823 3.261 3.26 7-7-.822-.822L5.25 9.433z" fill="#fff")
-                        .tache_content
-                            li
-                                a(href="/tache_update"+tache.id_tache) #{tacheTitre} 
-                                    ul.horizontal_action_list
-                                        li
-                                            a 1 sur 2
-                                        li
-                                            a Echéance :#{tacheDate}
-                                        li
-                                            a Note :#{tacheNote}
+                ul
+                    for tache in tacheList
+                        .check
+                            a.svg
+                                svg(width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg")
+                                    path(d="M5.25 9.433L2.817 7l-.828.823 3.261 3.26 7-7-.822-.822L5.25 9.433z" fill="#fff")
+                            .tache_content
+                                li
+                                    a(href="/tache_update"+tache.id_tache) #{tache.titre} 
+                                        ul.horizontal_action_list
+                                            li
+                                                a 1 sur 2
+                                            li
+                                                a Echéance :#{tache.date}
+                                            li
+                                                a Note :#{tache.note}  
 
             if content != null
                 div #{content}

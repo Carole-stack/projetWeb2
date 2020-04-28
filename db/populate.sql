@@ -1,17 +1,19 @@
--- INSERT Projects
+     -- INSERT Projects
 
+DROP TABLE IF EXISTS etapes;
 DROP TABLE IF EXISTS taches;
 DROP TABLE IF EXISTS listes;
 DROP TABLE IF EXISTS users;
 
+
 CREATE TABLE USERS (
   Id_user SERIAL PRIMARY KEY,
   usermail VARCHAR(25),
-  unsecured_password VARCHAR(20),
+  encrypted_password VARCHAR(20),
   created_at timestamp default current_timestamp
 );
 
-INSERT INTO USERS (usermail, unsecured_password) VALUES ('henriette3@me.com', '123456');
+INSERT INTO USERS (usermail, encrypted_password) VALUES ('henriette3@me.com', '123456');
 
 
 CREATE TABLE listes (
@@ -34,6 +36,7 @@ CREATE TABLE taches (
     titre VARCHAR,
     date_tache VARCHAR,
     note VARCHAR,
+    done BOOLEAN DEFAULT FALSE,
     created_at timestamp default current_timestamp
 );
 
@@ -42,4 +45,15 @@ REFERENCES listes(id_liste);
 
 INSERT INTO taches (id_liste, titre, date_tache, note) VALUES (1, 'enregistrer sur git', '12/05/20', 'blablabla');
 
+CREATE TABLE etapes (
+  id_etape SERIAL PRIMARY KEY,
+  id_tache INTEGER,
+  label VARCHAR(35), 
+  coche BOOLEAN DEFAULT FALSE,
+  created_at timestamp default current_timestamp
+);
+
+ALTER TABLE etapes ADD CONSTRAINT FK_id_tache FOREIGN KEY (id_tache) 
+REFERENCES taches(id_tache);
+INSERT INTO etapes (id_tache, label, coche) VALUES (1, 'récupérer le repository', FALSE);
 
